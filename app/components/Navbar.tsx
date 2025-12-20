@@ -3,20 +3,44 @@
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("home")
   const pathname = usePathname()
 
   const menuItems = [
-    { name: "Home", path: "/#home" },
-    { name: "About", path: "/#about" },
-    { name: "Services", path: "/#services" },
-    { name: "Portfolio", path: "/#portfolio" },
-    { name: "Contact", path: "/#contact" },
+    { name: "Home", path: "/#home", section: "home" },
+    { name: "About", path: "/#about", section: "about" },
+    { name: "Services", path: "/#services", section: "services" },
+    { name: "Portfolio", path: "/#portfolio", section: "portfolio" },
+    { name: "Contact", path: "/#contact", section: "contact" },
   ]
+
+  // Scroll spy to detect active section
+  useEffect(() => {
+    if (pathname !== "/") return
+
+    const handleScroll = () => {
+      const sections = menuItems.map(item => item.section)
+      const scrollPosition = window.scrollY + 100 // Offset for navbar height
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i])
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i])
+          break
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    handleScroll() // Initial check
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [pathname])
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     // Only handle smooth scroll if we're on the home page
@@ -30,10 +54,9 @@ const Navbar = () => {
     setIsOpen(false)
   }
 
-  const isActive = (path: string) => {
+  const isActive = (section: string) => {
     if (pathname !== "/") return false
-    // For homepage sections, we could add scroll spy later
-    return path === "/#home"
+    return activeSection === section
   }
 
   return (
@@ -70,13 +93,12 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-2">
             {menuItems.map((item, index) => {
-              const active = isActive(item.path)
-              const sectionId = item.path.split("#")[1]
+              const active = isActive(item.section)
               return (
                 <Link 
                   key={item.path} 
                   href={item.path}
-                  onClick={(e) => handleSmoothScroll(e, `#${sectionId}`)}
+                  onClick={(e) => handleSmoothScroll(e, `#${item.section}`)}
                 >
                   <motion.div
                     className="relative px-4 py-2 cursor-pointer"
@@ -178,13 +200,12 @@ const Navbar = () => {
             >
               <div className="py-4 space-y-2">
                 {menuItems.map((item, index) => {
-                  const active = isActive(item.path)
-                  const sectionId = item.path.split("#")[1]
+                  const active = isActive(item.section)
                   return (
                     <Link 
                       key={item.path} 
                       href={item.path}
-                      onClick={(e) => handleSmoothScroll(e, `#${sectionId}`)}
+                      onClick={(e) => handleSmoothScroll(e, `#${item.section}`)}
                     >
                       <motion.div
                         className={`relative block px-4 py-3 font-medium text-lg rounded-lg ${

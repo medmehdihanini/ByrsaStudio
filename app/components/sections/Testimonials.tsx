@@ -45,14 +45,14 @@ const testimonials = [
 
 export default function Testimonials() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: false, margin: "-150px" });
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section
       id="testimonials"
       ref={ref}
-      className="relative min-h-screen py-20 px-6 bg-gradient-to-br from-[#0a0a0a] via-[#0f0520] to-[#0a0a0a]"
+      className="relative min-h-screen py-20 px-6"
     >
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}
@@ -81,7 +81,7 @@ export default function Testimonials() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative p-8 md:p-12 bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-gray-700/50 rounded-3xl backdrop-blur-sm">
+            <div className="relative p-8 md:p-12 bg-gradient-to-br from-gray-900/30 to-gray-800/20 border border-gray-700/50 rounded-3xl backdrop-blur-sm">
               {/* Quote Icon */}
               <div className="absolute top-6 left-6 text-6xl text-purple-500/20">
                 "

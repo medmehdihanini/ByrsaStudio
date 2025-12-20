@@ -6,13 +6,13 @@ import { useRef } from "react";
 
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: false, margin: "-150px" });
 
   return (
     <section
       id="about"
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center py-20 px-6 bg-gradient-to-br from-[#0a0a0a] via-[#1a0a2e] to-[#0a0a0a]"
+      className="relative min-h-screen flex items-center justify-center py-20 px-6 overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}

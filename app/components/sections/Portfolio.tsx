@@ -63,15 +63,15 @@ const projects = [
 
 export default function Portfolio() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: false, margin: "-150px" });
 
   return (
     <section
       id="portfolio"
       ref={ref}
-      className="relative min-h-screen py-20 px-6 bg-gradient-to-br from-[#0a0a0a] via-[#1a0a2e] to-[#0a0a0a]"
+      className="relative min-h-screen py-20 px-6 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -94,15 +94,24 @@ export default function Portfolio() {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
+              initial={{ opacity: 0, rotateY: -90, z: -100 }}
+              animate={
+                isInView
+                  ? { opacity: 1, rotateY: 0, z: 0 }
+                  : { opacity: 0, rotateY: -90, z: -100 }
+              }
+              transition={{
+                duration: 0.8,
+                delay: index * 0.15,
+                ease: "easeOut",
+              }}
+              whileHover={{ scale: 1.05, rotateY: 5, z: 50 }}
+              style={{ transformStyle: "preserve-3d", perspective: 1000 }}
               className="group relative cursor-pointer"
             >
-              <div className="relative h-full bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-gray-700/50 rounded-2xl overflow-hidden backdrop-blur-sm transition-all duration-300 hover:border-gray-600">
+              <div className="relative h-full bg-gradient-to-br from-gray-900/30 to-gray-800/20 border border-gray-700/50 rounded-2xl overflow-hidden backdrop-blur-sm transition-all duration-300 hover:border-gray-600">
                 {/* Image container */}
-                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900">
+                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-800/30 to-gray-900/20">
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20`}
                   />

@@ -3,6 +3,7 @@ import { Rajdhani, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import CursorGlow from "./components/CursorGlow";
+import ScrollProgress from "./components/ScrollProgress";
 
 const rajdhani = Rajdhani({
   variable: "--font-rajdhani",
@@ -38,6 +39,7 @@ export default function RootLayout({
       >
         <CursorGlow />
         <Navbar />
+        <ScrollProgress />
         {children}
       </body>
     </html>

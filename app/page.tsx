@@ -1,4 +1,6 @@
 import LenisProvider from "./components/LenisProvider";
+import UnifiedBackground from "./components/UnifiedBackground";
+import IntroAnimation from "./components/IntroAnimation";
 import Hero from "./components/sections/Hero";
 import About from "./components/sections/About";
 import Services from "./components/sections/Services";
@@ -9,7 +11,9 @@ import ContactCTA from "./components/sections/ContactCTA";
 export default function Home() {
   return (
     <LenisProvider>
-      <main className="relative">
+      <IntroAnimation />
+      <UnifiedBackground />
+      <main className="relative z-10">
         <Hero />
         <About />
         <Services />
