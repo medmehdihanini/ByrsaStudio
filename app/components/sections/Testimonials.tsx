@@ -45,7 +45,7 @@ const testimonials = [
 
 export default function Testimonials() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-150px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px" }); // Changed to once: true for better performance
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (

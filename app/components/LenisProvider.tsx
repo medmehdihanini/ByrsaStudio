@@ -15,20 +15,20 @@ export default function LenisProvider({
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Initialize Lenis with premium smooth scrolling settings
+    // Initialize Lenis with optimized smooth scrolling settings
     lenisRef.current = new Lenis({
-      duration: 1.5, // Longer duration for smoother feel
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 0.8, // Slower scroll for more control
+      wheelMultiplier: 0.8,
       smoothTouch: false,
       touchMultiplier: 2,
       infinite: false,
     });
 
-    // Sync Lenis with GSAP ScrollTrigger for advanced animations
+    // Sync Lenis with GSAP ScrollTrigger - single RAF loop for better performance
     lenisRef.current.on("scroll", ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
@@ -36,14 +36,6 @@ export default function LenisProvider({
     });
 
     gsap.ticker.lagSmoothing(0);
-
-    // Animation frame loop
-    function raf(time: number) {
-      lenisRef.current?.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
 
     // Cleanup
     return () => {

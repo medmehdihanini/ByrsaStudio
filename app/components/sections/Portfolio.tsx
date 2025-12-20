@@ -63,7 +63,7 @@ const projects = [
 
 export default function Portfolio() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-150px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px" }); // Changed to once: true for better performance
 
   return (
     <section
@@ -94,19 +94,18 @@ export default function Portfolio() {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, rotateY: -90, z: -100 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={
                 isInView
-                  ? { opacity: 1, rotateY: 0, z: 0 }
-                  : { opacity: 0, rotateY: -90, z: -100 }
+                  ? { opacity: 1, y: 0 }
+                  : { opacity: 0, y: 50 }
               }
               transition={{
-                duration: 0.8,
-                delay: index * 0.15,
+                duration: 0.6,
+                delay: index * 0.1,
                 ease: "easeOut",
               }}
-              whileHover={{ scale: 1.05, rotateY: 5, z: 50 }}
-              style={{ transformStyle: "preserve-3d", perspective: 1000 }}
+              whileHover={{ scale: 1.03, y: -5 }} // Simplified hover - removed 3D transforms for better performance
               className="group relative cursor-pointer"
             >
               <div className="relative h-full bg-gradient-to-br from-gray-900/30 to-gray-800/20 border border-gray-700/50 rounded-2xl overflow-hidden backdrop-blur-sm transition-all duration-300 hover:border-gray-600">
@@ -118,8 +117,8 @@ export default function Portfolio() {
                   {/* Placeholder - will be replaced with actual project images */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <motion.div
-                      whileHover={{ scale: 1.1, rotate: 360 }}
-                      transition={{ duration: 0.6 }}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
                       className="w-24 h-24 opacity-30"
                     >
                       <div

@@ -82,7 +82,7 @@ const services = [
 
 export default function Services() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-150px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px" }); // Changed to once: true for better performance
 
   return (
     <section

@@ -6,40 +6,40 @@ import { useMemo } from "react";
 export default function UnifiedBackground() {
   const { scrollYProgress } = useScroll();
   
-  // Parallax layers with different speeds
-  const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const y3 = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  // Parallax layers with different speeds - reduced range for better performance
+  const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const y3 = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   
-  // Generate dots once for consistency
+  // Reduced dots from 50 to 20 for better performance
   const dots = useMemo(
     () =>
-      Array.from({ length: 50 }).map(() => ({
+      Array.from({ length: 20 }).map(() => ({
         left: Math.random() * 100,
         top: Math.random() * 100,
         size: Math.random() * 3 + 1,
-        duration: 3 + Math.random() * 3,
+        duration: 4 + Math.random() * 4, // Slower animations use less CPU
         delay: Math.random() * 2,
       })),
     []
   );
 
-  // Generate grid lines
+  // Reduced grid lines from 40 to 20 total (10 vertical + 10 horizontal)
   const gridLines = useMemo(() => {
     const lines = [];
-    // Vertical lines
-    for (let i = 0; i < 20; i++) {
+    // Vertical lines - reduced to 10
+    for (let i = 0; i < 10; i++) {
       lines.push({
         type: "vertical",
-        position: (i * 100) / 20,
+        position: (i * 100) / 10,
         key: `v-${i}`,
       });
     }
-    // Horizontal lines
-    for (let i = 0; i < 20; i++) {
+    // Horizontal lines - reduced to 10
+    for (let i = 0; i < 10; i++) {
       lines.push({
         type: "horizontal",
-        position: (i * 100) / 20,
+        position: (i * 100) / 10,
         key: `h-${i}`,
       });
     }
@@ -54,10 +54,10 @@ export default function UnifiedBackground() {
         style={{ y: y3 }}
       />
 
-      {/* Animated grid - Layer 1 (slowest) */}
+      {/* Animated grid - Layer 1 (slowest) - optimized with will-change */}
       <motion.div
         className="absolute inset-0 opacity-20"
-        style={{ y: y3 }}
+        style={{ y: y3, willChange: "transform" }}
       >
         {gridLines.map((line) => (
           <motion.div
@@ -69,29 +69,32 @@ export default function UnifiedBackground() {
                     left: `${line.position}%`,
                     width: "1px",
                     height: "200%",
+                    willChange: "opacity",
                   }
                 : {
                     top: `${line.position}%`,
                     height: "1px",
                     width: "200%",
+                    willChange: "opacity",
                   }
             }
             animate={{
               opacity: [0.1, 0.3, 0.1],
             }}
             transition={{
-              duration: 4,
+              duration: 6, // Slower = less CPU usage
               repeat: Infinity,
               delay: Math.random() * 2,
+              ease: "linear", // Linear is more performant
             }}
           />
         ))}
       </motion.div>
 
-      {/* Floating dots - Layer 2 (medium speed) */}
+      {/* Floating dots - Layer 2 (medium speed) - optimized with will-change */}
       <motion.div
         className="absolute inset-0"
-        style={{ y: y2 }}
+        style={{ y: y2, willChange: "transform" }}
       >
         {dots.map((dot, i) => (
           <motion.div
@@ -102,51 +105,54 @@ export default function UnifiedBackground() {
               top: `${dot.top}%`,
               width: dot.size,
               height: dot.size,
+              willChange: "transform, opacity",
             }}
             animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.2, 0.5, 0.2],
+              scale: [1, 1.3, 1], // Reduced scale range
+              opacity: [0.2, 0.4, 0.2], // Reduced opacity range
             }}
             transition={{
               duration: dot.duration,
               repeat: Infinity,
               delay: dot.delay,
-              ease: "easeInOut",
+              ease: "linear", // Linear is more performant
             }}
           />
         ))}
       </motion.div>
 
-      {/* Gradient orbs - Layer 3 (fastest) */}
+      {/* Gradient orbs - Layer 3 (fastest) - optimized with will-change */}
       <motion.div
         className="absolute inset-0"
-        style={{ y: y1 }}
+        style={{ y: y1, willChange: "transform" }}
       >
         {/* Purple orb */}
         <motion.div
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+          style={{ willChange: "transform, opacity" }}
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+            scale: [1, 1.15, 1], // Reduced scale range
+            opacity: [0.2, 0.4, 0.2], // Reduced opacity range
           }}
           transition={{
-            duration: 8,
+            duration: 10, // Slower = less CPU
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "linear",
           }}
         />
         
         {/* Cyan orb */}
         <motion.div
           className="absolute top-2/3 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"
+          style={{ willChange: "transform, opacity" }}
           animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.5, 0.3],
+            scale: [1.15, 1, 1.15], // Reduced scale range
+            opacity: [0.2, 0.4, 0.2], // Reduced opacity range
           }}
           transition={{
-            duration: 8,
+            duration: 10, // Slower = less CPU
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "linear",
             delay: 1,
           }}
         />
