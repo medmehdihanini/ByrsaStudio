@@ -7,16 +7,22 @@ const CursorGlow = () => {
   const cursorX = useMotionValue(0)
   const cursorY = useMotionValue(0)
 
-  // Reduced to 2 particles instead of 4 for better performance
-  const springConfigs = [
-    { damping: 30, stiffness: 200, mass: 0.3 },
-    { damping: 40, stiffness: 100, mass: 0.7 },
-  ]
+  // Call hooks directly at the top level (not in a loop/map) - all 4 particles
+  const spring1X = useSpring(cursorX, { damping: 30, stiffness: 200, mass: 0.3 })
+  const spring1Y = useSpring(cursorY, { damping: 30, stiffness: 200, mass: 0.3 })
+  const spring2X = useSpring(cursorX, { damping: 35, stiffness: 150, mass: 0.5 })
+  const spring2Y = useSpring(cursorY, { damping: 35, stiffness: 150, mass: 0.5 })
+  const spring3X = useSpring(cursorX, { damping: 40, stiffness: 100, mass: 0.7 })
+  const spring3Y = useSpring(cursorY, { damping: 40, stiffness: 100, mass: 0.7 })
+  const spring4X = useSpring(cursorX, { damping: 45, stiffness: 80, mass: 0.9 })
+  const spring4Y = useSpring(cursorY, { damping: 45, stiffness: 80, mass: 0.9 })
 
-  const particles = springConfigs.map(config => ({
-    x: useSpring(cursorX, config),
-    y: useSpring(cursorY, config),
-  }))
+  const particles = [
+    { x: spring1X, y: spring1Y },
+    { x: spring2X, y: spring2Y },
+    { x: spring3X, y: spring3Y },
+    { x: spring4X, y: spring4Y },
+  ]
 
   useEffect(() => {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
@@ -50,7 +56,6 @@ const CursorGlow = () => {
           y: particles[0].y,
           marginLeft: '-12px',
           marginTop: '-12px',
-          willChange: 'transform',
         }}
       >
         <svg width="24" height="24" viewBox="0 0 24 24">
@@ -61,35 +66,79 @@ const CursorGlow = () => {
             strokeWidth="2"
             initial={{ opacity: 0 }}
             animate={{ opacity: [0.3, 0.6, 0.3], rotate: 360 }}
-            transition={{ opacity: { duration: 3, repeat: Infinity }, rotate: { duration: 12, repeat: Infinity, ease: "linear" } }}
+            transition={{ opacity: { duration: 2, repeat: Infinity }, rotate: { duration: 8, repeat: Infinity, ease: "linear" } }}
           />
         </svg>
       </motion.div>
 
-      {/* Particle 2: Circle - Slower */}
+      {/* Particle 2: Square/Code Block */}
       <motion.div
         style={{
           position: 'absolute',
           x: particles[1].x,
           y: particles[1].y,
+          marginLeft: '-10px',
+          marginTop: '-10px',
+        }}
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20">
+          <motion.rect
+            x="2" y="2" width="16" height="16"
+            fill="none"
+            stroke="#8df0cc"
+            strokeWidth="2"
+            rx="3"
+            animate={{ opacity: [0.2, 0.5, 0.2], rotate: -360 }}
+            transition={{ opacity: { duration: 2.5, repeat: Infinity }, rotate: { duration: 10, repeat: Infinity, ease: "linear" } }}
+          />
+        </svg>
+      </motion.div>
+
+      {/* Particle 3: Circle/Dot */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          x: particles[2].x,
+          y: particles[2].y,
           marginLeft: '-8px',
           marginTop: '-8px',
-          willChange: 'transform',
         }}
       >
         <svg width="16" height="16" viewBox="0 0 16 16">
           <motion.circle
             cx="8" cy="8" r="6"
             fill="none"
-            stroke="#8df0cc"
+            stroke="#0d63f8"
             strokeWidth="2"
-            animate={{ opacity: [0.25, 0.5, 0.25], scale: [1, 1.15, 1] }}
-            transition={{ duration: 3, repeat: Infinity }}
+            animate={{ opacity: [0.25, 0.55, 0.25], scale: [1, 1.2, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
           />
         </svg>
       </motion.div>
 
-      {/* Subtle glow behind cursor - optimized */}
+      {/* Particle 4: Cross/Plus (Game UI element) */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          x: particles[3].x,
+          y: particles[3].y,
+          marginLeft: '-10px',
+          marginTop: '-10px',
+        }}
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20">
+          <motion.path
+            d="M10 2 L10 18 M2 10 L18 10"
+            stroke="#bd5fff"
+            strokeWidth="2"
+            strokeLinecap="round"
+            animate={{ opacity: [0.2, 0.4, 0.2], rotate: 45 }}
+            transition={{ opacity: { duration: 3, repeat: Infinity }, rotate: { duration: 6, repeat: Infinity, ease: "linear" } }}
+          />
+        </svg>
+      </motion.div>
+
+      {/* Subtle small glow behind cursor */}
       <motion.div
         style={{
           position: 'absolute',
@@ -99,7 +148,6 @@ const CursorGlow = () => {
           marginTop: '-40px',
           width: '80px',
           height: '80px',
-          willChange: 'transform',
         }}
       >
         <motion.div
@@ -108,8 +156,8 @@ const CursorGlow = () => {
             background: 'radial-gradient(circle, rgba(255,0,136,0.4) 0%, transparent 70%)',
             mixBlendMode: 'screen',
           }}
-          animate={{ scale: [1, 1.15, 1] }}
-          transition={{ duration: 3, repeat: Infinity }}
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
         />
       </motion.div>
     </div>
