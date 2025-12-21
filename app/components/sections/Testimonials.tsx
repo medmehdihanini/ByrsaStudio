@@ -6,39 +6,39 @@ import { useRef, useState } from "react";
 
 const testimonials = [
   {
-    name: "Alex Johnson",
-    role: "CEO, GameTech Studios",
+    name: "Client",
+    role: "Unity Game Developer Project",
     content:
-      "ByrsaStudio transformed our vision into reality. Their expertise in game development and attention to detail resulted in a product that exceeded our expectations. Highly recommended!",
+      "Jawher was truly a surprise. Working with him was an impressive experience, and he completed the project with responsibility, enthusiasm, good humor, professionalism, and knowledge. I will be working with him again!",
     rating: 5,
-    avatar: "AJ",
+    avatar: "JW",
     color: "from-purple-500 to-pink-500",
   },
   {
-    name: "Sarah Chen",
-    role: "Indie Developer",
+    name: "Client",
+    role: "Unreal Engine Technical Test",
     content:
-      "Working with ByrsaStudio was an absolute pleasure. They understood our creative vision and delivered a stunning game with incredible performance. Professional and talented team!",
+      "Working with Jawhar was an excellent experience. He is professional, responsive, and truly understands the project requirements from the start. The communication was smooth, and he delivered everything on time.",
     rating: 5,
-    avatar: "SC",
+    avatar: "UE",
     color: "from-cyan-500 to-blue-500",
   },
   {
-    name: "Michael Rodriguez",
-    role: "Product Manager, PlayForge",
+    name: "Client",
+    role: "Interactive 3D Game Developer",
     content:
-      "The team at ByrsaStudio is phenomenal. They delivered our mobile game on time, within budget, and with exceptional quality. Their communication throughout the project was outstanding.",
+      "Jawher was great to work with. Timely responses and captured exactly what I was looking for. Looking forward to working with him again.",
     rating: 5,
-    avatar: "MR",
+    avatar: "IG",
     color: "from-green-500 to-teal-500",
   },
   {
-    name: "Emily Williams",
-    role: "Creative Director, Pixel Dreams",
+    name: "Client",
+    role: "Unity Developer",
     content:
-      "ByrsaStudio brought innovation and creativity to our project. Their technical skills combined with artistic vision resulted in a game that our users absolutely love. Outstanding work!",
+      "He did an excellent job, and everything went smoothly. I truly appreciate his dedication and expertise in the work. I was highly impressed and thoroughly enjoyed it. Thank you so much!",
     rating: 5,
-    avatar: "EW",
+    avatar: "UD",
     color: "from-pink-500 to-red-500",
   },
 ];

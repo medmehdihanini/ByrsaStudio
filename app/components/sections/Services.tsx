@@ -1,88 +1,455 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 const services = [
   {
     title: "Game Development",
     description:
-      "Full-cycle game development from concept to launch across multiple platforms including PC, mobile, and console.",
-    icon: (
-      <svg className="w-16 h-16" viewBox="0 0 24 24" fill="none">
-        <path d="M7 6C7 3.79086 8.79086 2 11 2H13C15.2091 2 17 3.79086 17 6V11H19C20.6569 11 22 12.3431 22 14C22 15.6569 20.6569 17 19 17H18V20C18 21.1046 17.1046 22 16 22C14.8954 22 14 21.1046 14 20V17H10V20C10 21.1046 9.10457 22 8 22C6.89543 22 6 21.1046 6 20V17H5C3.34315 17 2 15.6569 2 14C2 12.3431 3.34315 11 5 11H7V6Z" className="fill-current" />
-      </svg>
-    ),
-    color: "from-purple-500 to-pink-500",
-    features: ["Unity & Unreal Engine", "Cross-platform", "Multiplayer Systems"],
+      "End-to-end game development from initial concept to final launch. We specialize in creating immersive gaming experiences across multiple platforms including PC, console, and mobile.",
+    fullDescription:
+      "Our expert team delivers AAA-quality games using industry-leading engines like Unity and Unreal Engine. From indie titles to large-scale multiplayer experiences, we handle everything including gameplay mechanics, AI systems, physics simulation, and network architecture. We transform your creative vision into playable reality with cutting-edge technology and artistic excellence.",
+    image: "/video game images.jpg",
+    hasImage: true,
+    color: "from-purple-500 via-pink-500 to-red-500",
+    features: ["Unity & Unreal Engine", "Cross-Platform Development", "Multiplayer Systems", "Game Mechanics Design", "AI & Physics", "Full Production Pipeline"],
   },
   {
     title: "UI/UX Design",
     description:
-      "Intuitive and visually stunning user interfaces designed to enhance player engagement and user experience.",
-    icon: (
-      <svg className="w-16 h-16" viewBox="0 0 24 24" fill="none">
-        <path d="M4 4H20V20H4V4ZM6 6V18H18V6H6ZM8 8H16V10H8V8ZM8 12H16V14H8V12Z" className="fill-current" />
-      </svg>
-    ),
-    color: "from-pink-500 to-red-500",
-    features: ["Player-Centric Design", "Responsive Layouts", "Prototyping"],
+      "Player-centric interface design that combines stunning visuals with intuitive functionality. We create seamless user experiences that keep players engaged and immersed in your digital products.",
+    fullDescription:
+      "Our design philosophy focuses on creating interfaces that are both beautiful and functional. From menu systems to HUD design, we ensure every interaction feels natural and enhances the overall experience. We conduct extensive user testing, create interactive prototypes, and iterate based on real player feedback to deliver designs that truly resonate with your audience.",
+    hasImage: false,
+    color: "from-cyan-400 via-blue-500 to-purple-500",
+    features: ["Interactive Prototyping", "User Research & Testing", "Responsive Design", "Player Psychology", "Accessibility Focus", "Design Systems"],
   },
   {
     title: "3D Modeling & Animation",
     description:
-      "High-quality 3D assets, character models, and fluid animations that bring your game world to life.",
-    icon: (
-      <svg className="w-16 h-16" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L2 7L12 12L22 7L12 2Z" className="fill-current" opacity="0.5" />
-        <path d="M2 17L12 22L22 17V7L12 12L2 7V17Z" className="fill-current" />
-      </svg>
-    ),
-    color: "from-cyan-500 to-blue-500",
-    features: ["Character Design", "Environment Art", "Motion Capture"],
+      "Breathtaking 3D assets, lifelike character models, and cinematic-quality animations that bring your game world to life with stunning visual fidelity and artistic detail.",
+    fullDescription:
+      "We create highly detailed 3D models optimized for real-time rendering across all platforms. Our artists specialize in character creation, environment design, prop modeling, and advanced animation techniques including motion capture integration, procedural animation, and physics-based simulations. Every asset is crafted with meticulous attention to detail and technical optimization.",
+    hasImage: false,
+    color: "from-green-400 via-emerald-500 to-teal-500",
+    features: ["Character & Environment Design", "Motion Capture Integration", "PBR Materials & Textures", "Procedural Animation", "Rigging & Skinning", "Real-time Optimization"],
   },
   {
-    title: "Game Testing & QA",
+    title: "Mixed Reality Development",
     description:
-      "Comprehensive testing services to ensure your game is bug-free, balanced, and delivers the best player experience.",
-    icon: (
-      <svg className="w-16 h-16" viewBox="0 0 24 24" fill="none">
-        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" className="fill-current" />
-      </svg>
-    ),
-    color: "from-green-500 to-teal-500",
-    features: ["Functional Testing", "Performance Testing", "User Testing"],
+      "Cutting-edge Mixed Reality experiences that blend the physical and digital worlds. We create innovative MR applications for training, entertainment, and enterprise solutions that revolutionize interaction.",
+    fullDescription:
+      "We develop Mixed Reality applications using Microsoft HoloLens, Magic Leap, and other MR platforms. Our solutions combine spatial mapping, hand tracking, voice commands, and 3D holographic content to create truly immersive experiences. From enterprise training simulations to collaborative design tools, we push the boundaries of what's possible in mixed reality.",
+    image: "/mixed reality.jpg",
+    hasImage: true,
+    color: "from-violet-500 via-purple-500 to-fuchsia-500",
+    features: ["HoloLens Development", "Spatial Mapping & Anchors", "Hand Tracking & Gestures", "Enterprise Solutions", "Holographic UI", "Real-world Integration"],
   },
   {
-    title: "Sound Design",
+    title: "VR Development",
     description:
-      "Immersive audio experiences with original music, sound effects, and voice acting tailored to your game.",
-    icon: (
-      <svg className="w-16 h-16" viewBox="0 0 24 24" fill="none">
-        <path d="M3 9V15H7L12 20V4L7 9H3ZM16.5 12C16.5 10.23 15.48 8.71 14 7.97V16.02C15.48 15.29 16.5 13.77 16.5 12ZM14 3.23V5.29C16.89 6.15 19 8.83 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.72 18.01 4.14 14 3.23Z" className="fill-current" />
-      </svg>
-    ),
-    color: "from-yellow-500 to-orange-500",
-    features: ["Original Soundtracks", "SFX Design", "Audio Implementation"],
+      "Fully immersive Virtual Reality experiences that transport users to entirely new worlds. From gaming to training simulations, we create VR that feels real and delivers unforgettable experiences.",
+    fullDescription:
+      "Our VR development spans across all major platforms including Meta Quest, PlayStation VR, and PC VR. We specialize in creating comfortable, intuitive VR experiences with advanced locomotion systems, realistic physics, spatial audio, and haptic feedback integration. Every project is optimized for performance while maintaining the highest visual quality.",
+    image: "/vr_images.png",
+    hasImage: true,
+    color: "from-orange-400 via-red-500 to-pink-500",
+    features: ["Multi-Platform VR", "Advanced Locomotion", "Spatial Audio Design", "Performance Optimization", "Comfort-First Design", "Haptic Feedback"],
   },
   {
-    title: "Live Ops & Support",
+    title: "AR Development",
     description:
-      "Post-launch support including updates, community management, and live operations to keep your game thriving.",
-    icon: (
-      <svg className="w-16 h-16" viewBox="0 0 24 24" fill="none">
-        <path d="M13 2.03V2.05L13 4.05C17.39 4.59 20.5 8.58 19.96 12.97C19.5 16.61 16.64 19.5 13 19.93V21.93C18.5 21.38 22.5 16.5 21.95 11C21.5 6.25 17.73 2.5 13 2.03ZM11 2.06C9.05 2.25 7.19 3 5.67 4.26L7.1 5.74C8.22 4.84 9.57 4.26 11 4.06V2.06ZM4.26 5.67C3 7.19 2.25 9.04 2.05 11H4.05C4.24 9.58 4.8 8.23 5.69 7.1L4.26 5.67ZM2.06 13C2.26 14.96 3.03 16.81 4.27 18.33L5.69 16.9C4.81 15.77 4.24 14.42 4.06 13H2.06ZM7.1 18.37L5.67 19.74C7.18 21 9.04 21.79 11 22V20C9.58 19.82 8.23 19.25 7.1 18.37Z" className="fill-current" />
-      </svg>
-    ),
-    color: "from-indigo-500 to-purple-500",
-    features: ["Updates & Patches", "Community Management", "Analytics"],
+      "Augmented Reality solutions that overlay digital content onto the real world. We create AR experiences for mobile, wearables, and web platforms that enhance reality and deliver innovative solutions.",
+    fullDescription:
+      "We leverage ARKit, ARCore, and WebAR technologies to build AR applications that seamlessly enhance reality. From location-based AR games to industrial AR tools and retail experiences, we create applications that integrate digital content with the physical environment using advanced computer vision, SLAM technology, and real-time tracking.",
+    hasImage: false,
+    color: "from-amber-400 via-orange-500 to-red-500",
+    features: ["ARKit & ARCore", "WebAR Solutions", "Image & Object Tracking", "Location-Based AR", "SLAM Technology", "Cross-Platform AR"],
+  },
+  {
+    title: "Web & Mobile Development",
+    description:
+      "Responsive websites and native mobile applications built with modern frameworks. We create fast, scalable, and user-friendly digital experiences that work flawlessly across all devices and platforms.",
+    fullDescription:
+      "Our development team builds high-performance web applications using React, Next.js, and modern web technologies, alongside native mobile apps for iOS and Android. We focus on responsive design, optimal performance, SEO, accessibility, and seamless integration with backend services and APIs. Every project is built with scalability and maintainability in mind.",
+    image: "/website-mobile dev.jpeg",
+    hasImage: true,
+    color: "from-blue-400 via-indigo-500 to-purple-500",
+    features: ["React & Next.js", "iOS & Android Native", "Progressive Web Apps", "API Integration", "Cloud Services", "Performance Optimization"],
   },
 ];
 
+
+// Service Item Component - Alternating Layout
+function ServiceItem({ service, index }: { service: typeof services[0]; index: number }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.95]);
+  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -50]);
+
+  const isEven = index % 2 === 0;
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ opacity, scale, y }}
+      className="relative mb-32 last:mb-0"
+    >
+      {service.hasImage ? (
+        // Layout with Image
+        <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center`}>
+          {/* Image Side */}
+          <motion.div 
+            className="w-full lg:w-1/2 relative"
+            initial={{ opacity: 0, x: isEven ? -100 : 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, type: "spring", stiffness: 50 }}
+          >
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group">
+              {/* Image with zoom effect */}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.6 }}
+                className="relative w-full h-full"
+              >
+                <Image
+                  src={service.image!}
+                  alt={service.title}
+                  fill
+                  className="object-cover"
+                />
+                {/* Gradient Overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-30 group-hover:opacity-20 transition-opacity duration-500`} />
+              </motion.div>
+              
+              {/* Animated Border */}
+              <motion.div
+                className="absolute inset-0 rounded-3xl"
+                animate={{
+                  boxShadow: [
+                    `0 0 20px rgba(168, 85, 247, 0.3)`,
+                    `0 0 40px rgba(168, 85, 247, 0.5)`,
+                    `0 0 20px rgba(168, 85, 247, 0.3)`,
+                  ],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+
+              {/* Floating Number Badge */}
+              <motion.div
+                className="absolute top-6 left-6 w-16 h-16 rounded-2xl bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center"
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  type: "tween",
+                }}
+              >
+                <span className={`text-2xl font-bold bg-gradient-to-br ${service.color} bg-clip-text text-transparent`}>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Content Side */}
+          <motion.div 
+            className="w-full lg:w-1/2 space-y-6"
+            initial={{ opacity: 0, x: isEven ? 100 : -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 50 }}
+          >
+            {/* Title */}
+            <div>
+              <motion.h3
+                className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                {service.title}
+              </motion.h3>
+              <motion.div
+                className={`h-1.5 bg-gradient-to-r ${service.color} rounded-full`}
+                initial={{ width: 0 }}
+                whileInView={{ width: "30%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              />
+            </div>
+
+            {/* Descriptions */}
+            <motion.p
+              className="text-xl text-gray-300 leading-relaxed"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              {service.description}
+            </motion.p>
+
+            <motion.p
+              className="text-base text-gray-400 leading-relaxed"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              {service.fullDescription}
+            </motion.p>
+
+            {/* Features Grid */}
+            <div className="grid grid-cols-2 gap-3 pt-4">
+              {service.features.map((feature, idx) => (
+                <motion.div
+                  key={idx}
+                  className="flex items-start gap-2"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.7 + idx * 0.05 }}
+                >
+                  <motion.span
+                    className={`mt-1.5 w-2 h-2 rounded-full bg-gradient-to-r ${service.color} flex-shrink-0`}
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [0.7, 1, 0.7],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: idx * 0.2,
+                    }}
+                  />
+                  <span className="text-sm text-gray-300 font-medium">{feature}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      ) : (
+        // Layout without Image - Animated Gradient Background
+        <div className="relative">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-700/50 p-8 md:p-12 lg:p-16">
+            {/* Animated Gradient Background */}
+            <motion.div
+              className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-20`}
+              animate={{
+                backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{
+                backgroundSize: '200% 200%',
+              }}
+            />
+
+            {/* Floating Particles */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[
+                { w: 80, h: 80, left: 10, top: 20, x: 30, y: 40, dur: 12 },
+                { w: 120, h: 120, left: 70, top: 60, x: -40, y: 30, dur: 14 },
+                { w: 90, h: 90, left: 30, top: 80, x: 20, y: -30, dur: 11 },
+                { w: 110, h: 110, left: 85, top: 15, x: -30, y: 40, dur: 13 },
+                { w: 70, h: 70, left: 50, top: 40, x: 40, y: -40, dur: 15 },
+                { w: 100, h: 100, left: 15, top: 70, x: -20, y: 30, dur: 10 },
+                { w: 85, h: 85, left: 65, top: 25, x: 30, y: -20, dur: 12 },
+                { w: 95, h: 95, left: 40, top: 55, x: -25, y: 35, dur: 14 },
+              ].map((particle, i) => (
+                <motion.div
+                  key={i}
+                  className={`absolute rounded-full bg-gradient-to-br ${service.color}`}
+                  style={{
+                    width: particle.w,
+                    height: particle.h,
+                    left: `${particle.left}%`,
+                    top: `${particle.top}%`,
+                    filter: 'blur(40px)',
+                    opacity: 0.1,
+                  }}
+                  animate={{
+                    x: [0, particle.x, 0],
+                    y: [0, particle.y, 0],
+                    scale: [1, 1.2, 1],
+                    opacity: [0.1, 0.2, 0.1],
+                  }}
+                  transition={{
+                    duration: particle.dur,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.5,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Floating Geometric Shapes */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[
+                { w: 50, h: 50, left: 20, top: 30, x: 20, y: -15, dur: 18, round: '50%' },
+                { w: 45, h: 45, left: 75, top: 70, x: -15, y: 20, dur: 16, round: '10px' },
+                { w: 60, h: 60, left: 45, top: 10, x: 10, y: 25, dur: 20, round: '50%' },
+                { w: 40, h: 40, left: 90, top: 45, x: -20, y: -10, dur: 17, round: '10px' },
+                { w: 55, h: 55, left: 10, top: 85, x: 25, y: -20, dur: 19, round: '50%' },
+                { w: 48, h: 48, left: 60, top: 55, x: -10, y: 15, dur: 21, round: '10px' },
+              ].map((shape, i) => (
+                <motion.div
+                  key={`shape-${i}`}
+                  className="absolute border-2 border-white/10"
+                  style={{
+                    width: shape.w,
+                    height: shape.h,
+                    left: `${shape.left}%`,
+                    top: `${shape.top}%`,
+                    borderRadius: shape.round,
+                  }}
+                  animate={{
+                    x: [0, shape.x, 0],
+                    y: [0, shape.y, 0],
+                    rotate: [0, 180, 360],
+                    opacity: [0.1, 0.3, 0.1],
+                  }}
+                  transition={{
+                    duration: shape.dur,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: i * 0.8,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
+              {/* Number Badge */}
+              <motion.div
+                className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 mb-4"
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
+                animate={{
+                  y: [0, -10, 0],
+                  transition: {
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    type: "tween",
+                  },
+                }}
+              >
+                <span className={`text-3xl font-bold bg-gradient-to-br ${service.color} bg-clip-text text-transparent`}>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </motion.div>
+
+              {/* Title */}
+              <motion.h3
+                className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                {service.title}
+              </motion.h3>
+
+              {/* Animated Divider */}
+              <motion.div
+                className="flex justify-center mb-6"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <motion.div
+                  className={`h-1.5 bg-gradient-to-r ${service.color} rounded-full`}
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "200px" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                />
+              </motion.div>
+
+              {/* Descriptions */}
+              <motion.p
+                className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                {service.description}
+              </motion.p>
+
+              <motion.p
+                className="text-base text-gray-400 leading-relaxed max-w-2xl mx-auto"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                {service.fullDescription}
+              </motion.p>
+
+              {/* Features Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-8 max-w-3xl mx-auto">
+                {service.features.map((feature, idx) => (
+                  <motion.div
+                    key={idx}
+                    className="flex items-center gap-2 justify-center md:justify-start"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.6 + idx * 0.05 }}
+                  >
+                    <motion.span
+                      className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color} flex-shrink-0`}
+                      animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.7, 1, 0.7],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: idx * 0.2,
+                      }}
+                    />
+                    <span className="text-sm text-gray-300 font-medium">{feature}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </motion.div>
+  );
+}
+
 export default function Services() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" }); // Changed to once: true for better performance
 
   return (
     <section
@@ -94,106 +461,77 @@ export default function Services() {
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-32"
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400">
-            Our Services
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full mb-6" />
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            We offer end-to-end game development solutions tailored to bring your
-            vision to life with cutting-edge technology and creative excellence.
-          </p>
+          <motion.div
+            animate={{
+              scale: [1, 1.02, 1],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">
+              Our Services
+            </h2>
+          </motion.div>
+          
+          <motion.div 
+            className="w-32 h-1.5 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 mx-auto rounded-full mb-8"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.3 }}
+          />
+          
+          <motion.p 
+            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Cutting-edge technology meets creative excellence. We deliver next-generation digital experiences 
+            that push the boundaries of what&apos;s possible in 2025.
+          </motion.p>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Services List */}
+        <div className="space-y-0">
           {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative"
-            >
-              <div className="relative h-full p-8 bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-gray-700/50 rounded-2xl backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-gray-600">
-                {/* Gradient overlay on hover */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
-                />
-
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Icon */}
-                  <motion.div
-                    whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                    className={`mb-4 bg-gradient-to-br ${service.color} bg-clip-text text-transparent`}
-                  >
-                    {service.icon}
-                  </motion.div>
-
-                  {/* Title */}
-                  <h3
-                    className={`text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${service.color}`}
-                  >
-                    {service.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-gray-300 mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
-
-                  {/* Features */}
-                  <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <motion.li
-                        key={idx}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={
-                          isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
-                        }
-                        transition={{
-                          duration: 0.4,
-                          delay: index * 0.1 + idx * 0.1,
-                        }}
-                        className="flex items-center text-sm text-gray-400"
-                      >
-                        <span className="w-1.5 h-1.5 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full mr-2" />
-                        {feature}
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Decorative corner */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-purple-600/20 to-transparent rounded-bl-full" />
-              </div>
-            </motion.div>
+            <ServiceItem key={service.title} service={service} index={index} />
           ))}
         </div>
 
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-16"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="text-center mt-32"
         >
           <a href="#contact">
             <motion.button
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 0 30px rgba(168,85,247,0.5)",
+                boxShadow: "0 0 40px rgba(168,85,247,0.6), 0 0 80px rgba(139,92,246,0.4)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-lg shadow-lg transition-all"
+              className="px-12 py-6 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white font-bold text-lg rounded-full shadow-2xl transition-all relative overflow-hidden group"
             >
-              Discuss Your Project
+              <motion.span
+                className="absolute inset-0 bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600"
+                initial={{ x: "100%" }}
+                whileHover={{ x: "0%" }}
+                transition={{ duration: 0.5 }}
+              />
+              <span className="relative z-10">Let&apos;s Build Something Amazing</span>
             </motion.button>
           </a>
         </motion.div>

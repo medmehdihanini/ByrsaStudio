@@ -11,16 +11,30 @@ export default function UnifiedBackground() {
   const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const y3 = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   
-  // Reduced dots from 50 to 20 for better performance
+  // Reduced dots from 50 to 20 for better performance - using fixed positions to avoid hydration errors
   const dots = useMemo(
-    () =>
-      Array.from({ length: 20 }).map(() => ({
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        size: Math.random() * 3 + 1,
-        duration: 4 + Math.random() * 4, // Slower animations use less CPU
-        delay: Math.random() * 2,
-      })),
+    () => [
+      { left: 10, top: 20, size: 2, duration: 5, delay: 0 },
+      { left: 25, top: 60, size: 3, duration: 6, delay: 0.3 },
+      { left: 40, top: 15, size: 1.5, duration: 7, delay: 0.6 },
+      { left: 55, top: 80, size: 2.5, duration: 5.5, delay: 0.9 },
+      { left: 70, top: 35, size: 2, duration: 6.5, delay: 1.2 },
+      { left: 85, top: 70, size: 3, duration: 7.5, delay: 1.5 },
+      { left: 15, top: 45, size: 2, duration: 5, delay: 0.2 },
+      { left: 30, top: 90, size: 2.5, duration: 6, delay: 0.5 },
+      { left: 45, top: 50, size: 1.5, duration: 7, delay: 0.8 },
+      { left: 60, top: 10, size: 3, duration: 5.5, delay: 1.1 },
+      { left: 75, top: 55, size: 2, duration: 6.5, delay: 1.4 },
+      { left: 90, top: 25, size: 2.5, duration: 7.5, delay: 1.7 },
+      { left: 20, top: 75, size: 2, duration: 5, delay: 0.4 },
+      { left: 35, top: 30, size: 3, duration: 6, delay: 0.7 },
+      { left: 50, top: 65, size: 1.5, duration: 7, delay: 1.0 },
+      { left: 65, top: 40, size: 2.5, duration: 5.5, delay: 1.3 },
+      { left: 80, top: 85, size: 2, duration: 6.5, delay: 1.6 },
+      { left: 12, top: 50, size: 3, duration: 7.5, delay: 0.1 },
+      { left: 48, top: 22, size: 2, duration: 5, delay: 0.9 },
+      { left: 82, top: 58, size: 2.5, duration: 6, delay: 1.8 },
+    ],
     []
   );
 
