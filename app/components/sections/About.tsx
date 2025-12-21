@@ -55,7 +55,7 @@ export default function About() {
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-8">
+            <div className="grid grid-cols-2 gap-4 pt-8">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
@@ -63,9 +63,9 @@ export default function About() {
                 className="text-center"
               >
                 <div className="text-3xl md:text-4xl font-bold text-purple-400 mb-2">
-                  50+
+                  +30
                 </div>
-                <div className="text-sm text-gray-400">Projects</div>
+                <div className="text-sm text-gray-400">Total project</div>
               </motion.div>
 
               <motion.div
@@ -74,20 +74,8 @@ export default function About() {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="text-center"
               >
-                <div className="text-3xl md:text-4xl font-bold text-pink-400 mb-2">
-                  10+
-                </div>
-                <div className="text-sm text-gray-400">Years</div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-                className="text-center"
-              >
                 <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">
-                  100+
+                  +60
                 </div>
                 <div className="text-sm text-gray-400">Clients</div>
               </motion.div>

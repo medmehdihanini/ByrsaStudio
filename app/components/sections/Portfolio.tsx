@@ -3,61 +3,38 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 const projects = [
   {
-    title: "Cyber Warriors",
-    category: "Action RPG",
+    title: "VacaTown",
+    category: "Game Development",
     description:
-      "A futuristic action RPG set in a dystopian cyberpunk world with stunning visuals and fast-paced combat.",
-    image: "/assets/mainlogo.png", // Placeholder
-    tags: ["Unity", "Multiplayer", "PC"],
+      "Overhauled a restaurant sim game - fixed AI pathfinding (customers/employees), redesigned login/register flows, and debugged gameplay systems (popularity, seating). Built ad integration (2x speed, cash rewards) and balanced economy. Fixed critical bugs like stuck NPCs, incorrect timers. Delivered optimized build with better performance for mobile and smoother mechanics.",
+    images: ["/Portfolio/VacaTown/1.png", "/Portfolio/VacaTown/2.png", "/Portfolio/VacaTown/3.png"],
+    link: "https://www.upwork.com/freelancers/jawherbenjeddou?p=1936566881965887488",
+    tags: ["Unity", "Mobile", "AI Systems"],
+    color: "from-orange-500 to-red-500",
+  },
+  {
+    title: "Ancient Towers",
+    category: "Game Developer",
+    description:
+      "Developed a tower defense game featuring strategic gameplay, dynamic enemy waves, and upgradeable defenses. Built with Unreal Engine, delivering immersive combat mechanics and engaging progression systems.",
+    images: ["/Portfolio/Ancient Towers/1.png", "/Portfolio/Ancient Towers/2.png", "/Portfolio/Ancient Towers/3.png"],
+    link: "https://www.upwork.com/freelancers/jawherbenjeddou?p=1953262839744045056",
+    tags: ["Unreal Engine", "Tower Defense", "Strategy"],
     color: "from-purple-500 to-pink-500",
   },
   {
-    title: "Fantasy Quest",
-    category: "Adventure",
+    title: "Paintings Of Katalina",
+    category: "Game Developer",
     description:
-      "An epic fantasy adventure featuring rich storytelling, puzzle-solving, and breathtaking environments.",
-    image: "/assets/mainlogo.png", // Placeholder
-    tags: ["Unreal", "Single Player", "Console"],
-    color: "from-blue-500 to-cyan-500",
-  },
-  {
-    title: "Racing Legends",
-    category: "Racing",
-    description:
-      "High-octane racing game with realistic physics, customizable vehicles, and competitive multiplayer.",
-    image: "/assets/mainlogo.png", // Placeholder
-    tags: ["Unity", "Mobile", "Cross-platform"],
-    color: "from-red-500 to-orange-500",
-  },
-  {
-    title: "Space Odyssey",
-    category: "Strategy",
-    description:
-      "Strategic space exploration game with resource management, ship building, and galactic conquest.",
-    image: "/assets/mainlogo.png", // Placeholder
-    tags: ["Godot", "PC", "Indie"],
-    color: "from-indigo-500 to-purple-500",
-  },
-  {
-    title: "Horror Mansion",
-    category: "Horror",
-    description:
-      "Psychological horror experience with immersive atmosphere, compelling narrative, and survival elements.",
-    image: "/assets/mainlogo.png", // Placeholder
-    tags: ["Unreal", "VR", "PC"],
-    color: "from-gray-500 to-red-900",
-  },
-  {
-    title: "Puzzle Paradise",
-    category: "Puzzle",
-    description:
-      "Innovative puzzle game with unique mechanics, hundreds of levels, and addictive gameplay.",
-    image: "/assets/mainlogo.png", // Placeholder
-    tags: ["Unity", "Mobile", "Casual"],
-    color: "from-green-500 to-teal-500",
+      "Complete development cycle from implementing core gameplay mechanics, player controls, and AI systems to integrating immersive environments and interactions for Electronic Overthrow LLC. A Zelda-inspired adventure game with rich storytelling and exploration.",
+    images: ["/Portfolio/Paintings Of Katalina/1.png", "/Portfolio/Paintings Of Katalina/2.png"],
+    link: "https://www.upwork.com/freelancers/jawherbenjeddou?p=1924209296781647872",
+    tags: ["Unity", "Adventure", "Full Development"],
+    color: "from-cyan-500 to-blue-500",
   },
 ];
 
@@ -80,94 +57,123 @@ export default function Portfolio() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
-            Our Portfolio
+            Our Work
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 mx-auto rounded-full mb-6" />
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Explore our collection of successful projects spanning multiple genres
-            and platforms, each crafted with passion and precision.
+            Real projects delivered with passion and precision. Each showcasing our expertise in game development and interactive experiences.
           </p>
         </motion.div>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <motion.div
+            <a
               key={project.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={
-                isInView
-                  ? { opacity: 1, y: 0 }
-                  : { opacity: 0, y: 50 }
-              }
-              transition={{
-                duration: 0.6,
-                delay: index * 0.1,
-                ease: "easeOut",
-              }}
-              whileHover={{ scale: 1.03, y: -5 }} // Simplified hover - removed 3D transforms for better performance
-              className="group relative cursor-pointer"
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
             >
-              <div className="relative h-full bg-gradient-to-br from-gray-900/30 to-gray-800/20 border border-gray-700/50 rounded-2xl overflow-hidden backdrop-blur-sm transition-all duration-300 hover:border-gray-600">
-                {/* Image container */}
-                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-800/30 to-gray-900/20">
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20`}
-                  />
-                  {/* Placeholder - will be replaced with actual project images */}
-                  <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={
+                  isInView
+                    ? { opacity: 1, y: 0 }
+                    : { opacity: 0, y: 50 }
+                }
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.15,
+                  ease: "easeOut",
+                }}
+                whileHover={{ scale: 1.03, y: -5 }}
+                className="group relative cursor-pointer h-full"
+              >
+                <div className="relative h-full bg-gradient-to-br from-gray-900/30 to-gray-800/20 border border-gray-700/50 rounded-2xl overflow-hidden backdrop-blur-sm transition-all duration-300 hover:border-gray-600">
+                  {/* Image container with scroll effect */}
+                  <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-800/30 to-gray-900/20">
+                    {/* Image Scroll Container */}
                     <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-24 h-24 opacity-30"
+                      className="relative w-full h-full"
+                      whileHover={{ y: project.images.length > 1 ? `-${(project.images.length - 1) * 100}%` : 0 }}
+                      transition={{ duration: project.images.length * 1.2, ease: "linear" }}
                     >
-                      <div
-                        className={`w-full h-full bg-gradient-to-br ${project.color} rounded-lg`}
-                      />
+                      {project.images.map((img, idx) => (
+                        <div key={idx} className="relative w-full h-64">
+                          <Image
+                            src={img}
+                            alt={`${project.title} - Screenshot ${idx + 1}`}
+                            fill
+                            className="object-cover"
+                            quality={80}
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA3gA//2Q=="
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                          />
+                        </div>
+                      ))}
+                    </motion.div>
+                    
+                    {/* Gradient Overlay */}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-10 transition-opacity duration-300`}
+                    />
+
+                    {/* Category badge */}
+                    <div className="absolute top-4 left-4 z-10">
+                      <span
+                        className={`px-3 py-1 text-xs font-semibold text-white bg-gradient-to-r ${project.color} rounded-full shadow-lg`}
+                      >
+                        {project.category}
+                      </span>
+                    </div>
+                    
+                    {/* View Details overlay */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      className="absolute inset-0 bg-black/60 flex items-center justify-center z-10"
+                    >
+                      <div className="text-center">
+                        <div className="text-white text-lg font-bold mb-2">View Details</div>
+                        <div className="text-cyan-400 text-sm">Click to see more →</div>
+                      </div>
                     </motion.div>
                   </div>
 
-                  {/* Category badge */}
-                  <div className="absolute top-4 left-4">
-                    <span
-                      className={`px-3 py-1 text-xs font-semibold text-white bg-gradient-to-r ${project.color} rounded-full`}
-                    >
-                      {project.category}
-                    </span>
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 transition-all">
+                      {project.title}
+                    </h3>
+
+                    <p className="text-gray-300 mb-4 leading-relaxed line-clamp-4">
+                      {project.description}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 text-xs bg-gray-800/50 text-gray-400 rounded-full border border-gray-700"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
+
+                  {/* Hover overlay */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`}
+                  />
                 </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 transition-all">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-gray-300 mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 text-xs bg-gray-800/50 text-gray-400 rounded-full border border-gray-700"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Hover overlay */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`}
-                />
-              </div>
-            </motion.div>
+              </motion.div>
+            </a>
           ))}
         </div>
 
@@ -175,19 +181,21 @@ export default function Portfolio() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-16"
         >
-          <motion.button
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 0 30px rgba(34,211,238,0.5)",
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-transparent border-2 border-cyan-400 text-cyan-400 font-semibold rounded-lg hover:bg-cyan-400/10 transition-all"
-          >
-            View All Projects
-          </motion.button>
+          <a href="https://www.upwork.com/freelancers/jawherbenjeddou" target="_blank" rel="noopener noreferrer">
+            <motion.button
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 30px rgba(34,211,238,0.5)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-transparent border-2 border-cyan-400 text-cyan-400 font-semibold rounded-lg hover:bg-cyan-400/10 transition-all"
+            >
+              View All Projects on Upwork
+            </motion.button>
+          </a>
         </motion.div>
       </div>
     </section>

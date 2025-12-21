@@ -60,7 +60,7 @@ export default function ContactCTA() {
             </motion.button>
           </Link>
 
-          <a href="mailto:info@byrsastudio.com">
+          <a href="mailto:jawher@byrsastudio.com">
             <motion.button
               whileHover={{
                 scale: 1.05,
@@ -79,7 +79,7 @@ export default function ContactCTA() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16"
+          className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16"
         >
           {/* Email */}
           <motion.div
@@ -92,7 +92,7 @@ export default function ContactCTA() {
               </svg>
             </div>
             <h3 className="text-lg font-bold text-white mb-2">Email</h3>
-            <p className="text-gray-400">info@byrsastudio.com</p>
+            <p className="text-gray-400">jawher@byrsastudio.com</p>
           </motion.div>
 
           {/* Phone */}
@@ -106,21 +106,7 @@ export default function ContactCTA() {
               </svg>
             </div>
             <h3 className="text-lg font-bold text-white mb-2">Phone</h3>
-            <p className="text-gray-400">+1 (555) 123-4567</p>
-          </motion.div>
-
-          {/* Location */}
-          <motion.div
-            whileHover={{ y: -5 }}
-            className="p-6 bg-gradient-to-br from-gray-900/30 to-gray-800/20 border border-gray-700/50 rounded-2xl backdrop-blur-sm"
-          >
-            <div className="text-pink-400 mb-3">
-              <svg className="w-10 h-10 mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5S14.5 7.62 14.5 9 13.38 11.5 12 11.5Z" />
-              </svg>
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Location</h3>
-            <p className="text-gray-400">Remote Worldwide</p>
+            <p className="text-gray-400">+216 29 782 073</p>
           </motion.div>
         </motion.div>
 
@@ -134,7 +120,9 @@ export default function ContactCTA() {
           <div className="flex gap-6 justify-center">
             {/* LinkedIn */}
             <motion.a
-              href="#"
+              href="https://www.linkedin.com/company/byrsa-studio/"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
               transition={{ duration: 0.4, delay: 0.9 }}
@@ -148,44 +136,14 @@ export default function ContactCTA() {
               </svg>
             </motion.a>
 
-            {/* Twitter/X */}
+            {/* Discord */}
             <motion.a
-              href="#"
+              href="https://discord.gg/MrpJ3GpUCd"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
               transition={{ duration: 0.4, delay: 1.0 }}
-              whileHover={{ scale: 1.2, y: -5 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-gray-800/30 to-gray-900/20 border border-gray-700 rounded-full hover:border-cyan-500 transition-all group"
-              aria-label="Twitter"
-            >
-              <svg className="w-6 h-6 text-gray-400 group-hover:text-cyan-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M22.46 6C21.69 6.35 20.86 6.58 20 6.69C20.88 6.16 21.56 5.32 21.88 4.31C21.05 4.81 20.13 5.16 19.16 5.36C18.37 4.5 17.26 4 16 4C13.65 4 11.73 5.92 11.73 8.29C11.73 8.63 11.77 8.96 11.84 9.27C8.28 9.09 5.11 7.38 3 4.79C2.63 5.42 2.42 6.16 2.42 6.94C2.42 8.43 3.17 9.75 4.33 10.5C3.62 10.5 2.96 10.3 2.38 10C2.38 10 2.38 10 2.38 10.03C2.38 12.11 3.86 13.85 5.82 14.24C5.46 14.34 5.08 14.39 4.69 14.39C4.42 14.39 4.15 14.36 3.89 14.31C4.43 16 6 17.26 7.89 17.29C6.43 18.45 4.58 19.13 2.56 19.13C2.22 19.13 1.88 19.11 1.54 19.07C3.44 20.29 5.70 21 8.12 21C16 21 20.33 14.46 20.33 8.79C20.33 8.60 20.33 8.42 20.32 8.23C21.16 7.63 21.88 6.87 22.46 6Z" />
-              </svg>
-            </motion.a>
-
-            {/* Instagram */}
-            <motion.a
-              href="#"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-              transition={{ duration: 0.4, delay: 1.1 }}
-              whileHover={{ scale: 1.2, y: -5 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-gray-800/30 to-gray-900/20 border border-gray-700 rounded-full hover:border-pink-500 transition-all group"
-              aria-label="Instagram"
-            >
-              <svg className="w-6 h-6 text-gray-400 group-hover:text-pink-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 19.4 19.4 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2M7.6 4C5.61 4 4 5.61 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C18.39 20 20 18.39 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6M17.25 5.5C17.94 5.5 18.5 6.06 18.5 6.75C18.5 7.44 17.94 8 17.25 8C16.56 8 16 7.44 16 6.75C16 6.06 16.56 5.5 17.25 5.5M12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7M12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z" />
-              </svg>
-            </motion.a>
-
-            {/* Discord */}
-            <motion.a
-              href="#"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-              transition={{ duration: 0.4, delay: 1.2 }}
               whileHover={{ scale: 1.2, y: -5 }}
               whileTap={{ scale: 0.9 }}
               className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-gray-800/30 to-gray-900/20 border border-gray-700 rounded-full hover:border-indigo-500 transition-all group"

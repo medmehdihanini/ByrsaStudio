@@ -125,6 +125,11 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
                   alt={service.title}
                   fill
                   className="object-cover"
+                  quality={75}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA3gA//2Q=="
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  priority={index < 2}
                 />
                 {/* Gradient Overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-30 group-hover:opacity-20 transition-opacity duration-500`} />
@@ -242,10 +247,9 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
             {/* Floating Particles - Optimized */}
             <div className="absolute inset-0 overflow-hidden">
               {[
-                { w: 100, h: 100, left: 15, top: 25, x: 25, y: 30, dur: 15 },
-                { w: 120, h: 120, left: 70, top: 60, x: -30, y: 25, dur: 18 },
-                { w: 90, h: 90, left: 35, top: 75, x: 20, y: -25, dur: 16 },
-                { w: 110, h: 110, left: 80, top: 20, x: -25, y: 30, dur: 17 },
+                { w: 110, h: 110, left: 15, top: 25, x: 20, y: 25, dur: 16 },
+                { w: 130, h: 130, left: 70, top: 60, x: -25, y: 20, dur: 18 },
+                { w: 100, h: 100, left: 40, top: 75, x: 18, y: -20, dur: 17 },
               ].map((particle, i) => (
                 <motion.div
                   key={i}
@@ -255,14 +259,14 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
                     height: particle.h,
                     left: `${particle.left}%`,
                     top: `${particle.top}%`,
-                    filter: 'blur(30px)',
-                    opacity: 0.1,
+                    filter: 'blur(20px)',
+                    opacity: 0.12,
                     willChange: 'transform',
                   }}
                   animate={{
                     x: [0, particle.x, 0],
                     y: [0, particle.y, 0],
-                    scale: [1, 1.15, 1],
+                    scale: [1, 1.1, 1],
                   }}
                   transition={{
                     duration: particle.dur,
@@ -277,9 +281,8 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
             {/* Floating Geometric Shapes - Optimized */}
             <div className="absolute inset-0 overflow-hidden">
               {[
-                { w: 55, h: 55, left: 25, top: 35, x: 15, y: -12, dur: 22, round: '50%' },
-                { w: 50, h: 50, left: 70, top: 65, x: -12, y: 15, dur: 24, round: '10px' },
-                { w: 60, h: 60, left: 45, top: 15, x: 10, y: 18, dur: 26, round: '50%' },
+                { w: 60, h: 60, left: 25, top: 35, x: 15, y: -12, dur: 24, round: '50%' },
+                { w: 55, h: 55, left: 70, top: 65, x: -12, y: 15, dur: 26, round: '10px' },
               ].map((shape, i) => (
                 <motion.div
                   key={`shape-${i}`}
