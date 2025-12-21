@@ -72,7 +72,7 @@ const Navbar = () => {
             >
               <Image
                 src="/assets/mainlogo.png"
-                alt="ByrsaStudio"
+                alt="Byrsa Studio"
                 width={50}
                 height={50}
                 className="drop-shadow-lg"
@@ -86,7 +86,7 @@ const Navbar = () => {
               }}
               transition={{ duration: 0.2 }}
             >
-              ByrsaStudio
+              Byrsa Studio
             </motion.span>
           </Link>
 

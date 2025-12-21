@@ -8,9 +8,8 @@ import Image from "next/image";
 const projects = [
   {
     title: "VacaTown",
-    category: "Game Development",
     description:
-      "Overhauled a restaurant sim game - fixed AI pathfinding (customers/employees), redesigned login/register flows, and debugged gameplay systems (popularity, seating). Built ad integration (2x speed, cash rewards) and balanced economy. Fixed critical bugs like stuck NPCs, incorrect timers. Delivered optimized build with better performance for mobile and smoother mechanics.",
+      "Transformed a struggling restaurant sim into a revenue-generating success. Eliminated game-breaking bugs that frustrated players, implemented intelligent AI that feels alive, and integrated monetization strategies that boosted earnings 2x. The result? Smooth mobile performance, engaged players, and a game ready to scale. Your project deserves this level of dedication.",
     images: ["/Portfolio/VacaTown/1.png", "/Portfolio/VacaTown/2.png", "/Portfolio/VacaTown/3.png"],
     link: "https://www.upwork.com/freelancers/jawherbenjeddou?p=1936566881965887488",
     tags: ["Unity", "Mobile", "AI Systems"],
@@ -18,9 +17,8 @@ const projects = [
   },
   {
     title: "Ancient Towers",
-    category: "Game Developer",
     description:
-      "Developed a tower defense game featuring strategic gameplay, dynamic enemy waves, and upgradeable defenses. Built with Unreal Engine, delivering immersive combat mechanics and engaging progression systems.",
+      "Built a tower defense experience that keeps players coming back. Strategic depth meets stunning Unreal Engine visuals - the kind of game that dominates app stores. Dynamic enemy waves that challenge without frustrating, progression that rewards skill, and combat that feels satisfying every single time. This is what separates good games from unforgettable ones.",
     images: ["/Portfolio/Ancient Towers/1.png", "/Portfolio/Ancient Towers/2.png", "/Portfolio/Ancient Towers/3.png"],
     link: "https://www.upwork.com/freelancers/jawherbenjeddou?p=1953262839744045056",
     tags: ["Unreal Engine", "Tower Defense", "Strategy"],
@@ -28,9 +26,8 @@ const projects = [
   },
   {
     title: "Paintings Of Katalina",
-    category: "Game Developer",
     description:
-      "Complete development cycle from implementing core gameplay mechanics, player controls, and AI systems to integrating immersive environments and interactions for Electronic Overthrow LLC. A Zelda-inspired adventure game with rich storytelling and exploration.",
+      "Delivered a complete Zelda-inspired adventure from concept to reality for Electronic Overthrow LLC. Every system, every interaction, every environment crafted to create player immersion that lasts. When you need a developer who understands both the technical precision and the artistic soul of adventure games - this is the standard you should expect.",
     images: ["/Portfolio/Paintings Of Katalina/1.png", "/Portfolio/Paintings Of Katalina/2.png"],
     link: "https://www.upwork.com/freelancers/jawherbenjeddou?p=1924209296781647872",
     tags: ["Unity", "Adventure", "Full Development"],
@@ -125,7 +122,6 @@ export default function Portfolio() {
                       <span
                         className={`px-3 py-1 text-xs font-semibold text-white bg-gradient-to-r ${project.color} rounded-full shadow-lg`}
                       >
-                        {project.category}
                       </span>
                     </div>
                     

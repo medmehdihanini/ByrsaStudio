@@ -9,29 +9,17 @@ const services = [
     title: "Game Development",
     description:
       "End-to-end game development from initial concept to final launch. We specialize in creating immersive gaming experiences across multiple platforms including PC, console, and mobile.",
-    fullDescription:
-      "Our expert team delivers AAA-quality games using industry-leading engines like Unity and Unreal Engine. From indie titles to large-scale multiplayer experiences, we handle everything including gameplay mechanics, AI systems, physics simulation, and network architecture. We transform your creative vision into playable reality with cutting-edge technology and artistic excellence.",
+
     image: "/video game images.jpg",
     hasImage: true,
     color: "from-purple-500 via-pink-500 to-red-500",
     features: ["Unity & Unreal Engine", "Cross-Platform Development", "Multiplayer Systems", "Game Mechanics Design", "AI & Physics", "Full Production Pipeline"],
   },
   {
-    title: "UI/UX Design",
-    description:
-      "Player-centric interface design that combines stunning visuals with intuitive functionality. We create seamless user experiences that keep players engaged and immersed in your digital products.",
-    fullDescription:
-      "Our design philosophy focuses on creating interfaces that are both beautiful and functional. From menu systems to HUD design, we ensure every interaction feels natural and enhances the overall experience. We conduct extensive user testing, create interactive prototypes, and iterate based on real player feedback to deliver designs that truly resonate with your audience.",
-    hasImage: false,
-    color: "from-cyan-400 via-blue-500 to-purple-500",
-    features: ["Interactive Prototyping", "User Research & Testing", "Responsive Design", "Player Psychology", "Accessibility Focus", "Design Systems"],
-  },
-  {
     title: "3D Modeling & Animation",
     description:
       "Breathtaking 3D assets, lifelike character models, and cinematic-quality animations that bring your game world to life with stunning visual fidelity and artistic detail.",
-    fullDescription:
-      "We create highly detailed 3D models optimized for real-time rendering across all platforms. Our artists specialize in character creation, environment design, prop modeling, and advanced animation techniques including motion capture integration, procedural animation, and physics-based simulations. Every asset is crafted with meticulous attention to detail and technical optimization.",
+
     hasImage: false,
     color: "from-green-400 via-emerald-500 to-teal-500",
     features: ["Character & Environment Design", "Motion Capture Integration", "PBR Materials & Textures", "Procedural Animation", "Rigging & Skinning", "Real-time Optimization"],
@@ -40,8 +28,7 @@ const services = [
     title: "Mixed Reality Development",
     description:
       "Cutting-edge Mixed Reality experiences that blend the physical and digital worlds. We create innovative MR applications for training, entertainment, and enterprise solutions that revolutionize interaction.",
-    fullDescription:
-      "We develop Mixed Reality applications using Microsoft HoloLens, Magic Leap, and other MR platforms. Our solutions combine spatial mapping, hand tracking, voice commands, and 3D holographic content to create truly immersive experiences. From enterprise training simulations to collaborative design tools, we push the boundaries of what's possible in mixed reality.",
+    
     image: "/mixed reality.jpg",
     hasImage: true,
     color: "from-violet-500 via-purple-500 to-fuchsia-500",
@@ -51,8 +38,7 @@ const services = [
     title: "VR Development",
     description:
       "Fully immersive Virtual Reality experiences that transport users to entirely new worlds. From gaming to training simulations, we create VR that feels real and delivers unforgettable experiences.",
-    fullDescription:
-      "Our VR development spans across all major platforms including Meta Quest, PlayStation VR, and PC VR. We specialize in creating comfortable, intuitive VR experiences with advanced locomotion systems, realistic physics, spatial audio, and haptic feedback integration. Every project is optimized for performance while maintaining the highest visual quality.",
+    
     image: "/vr_images.png",
     hasImage: true,
     color: "from-orange-400 via-red-500 to-pink-500",
@@ -62,8 +48,6 @@ const services = [
     title: "AR Development",
     description:
       "Augmented Reality solutions that overlay digital content onto the real world. We create AR experiences for mobile, wearables, and web platforms that enhance reality and deliver innovative solutions.",
-    fullDescription:
-      "We leverage ARKit, ARCore, and WebAR technologies to build AR applications that seamlessly enhance reality. From location-based AR games to industrial AR tools and retail experiences, we create applications that integrate digital content with the physical environment using advanced computer vision, SLAM technology, and real-time tracking.",
     hasImage: false,
     color: "from-amber-400 via-orange-500 to-red-500",
     features: ["ARKit & ARCore", "WebAR Solutions", "Image & Object Tracking", "Location-Based AR", "SLAM Technology", "Cross-Platform AR"],
@@ -72,8 +56,6 @@ const services = [
     title: "Web & Mobile Development",
     description:
       "Responsive websites and native mobile applications built with modern frameworks. We create fast, scalable, and user-friendly digital experiences that work flawlessly across all devices and platforms.",
-    fullDescription:
-      "Our development team builds high-performance web applications using React, Next.js, and modern web technologies, alongside native mobile apps for iOS and Android. We focus on responsive design, optimal performance, SEO, accessibility, and seamless integration with backend services and APIs. Every project is built with scalability and maintainability in mind.",
     image: "/website-mobile dev.jpeg",
     hasImage: true,
     color: "from-blue-400 via-indigo-500 to-purple-500",

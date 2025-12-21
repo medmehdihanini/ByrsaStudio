@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import CursorGlow from "./components/CursorGlow";
 import ScrollProgress from "./components/ScrollProgress";
+import { Analytics } from "@vercel/analytics/next";
 
 const rajdhani = Rajdhani({
   variable: "--font-rajdhani",
@@ -21,7 +22,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "ByrsaStudio",
-  description: "Game Development Agency",
+  description: "Game Development Studio ",
   icons: {
     icon: '/assets/mainlogo.png',
   },
@@ -45,6 +46,7 @@ export default function RootLayout({
         <Navbar />
         <ScrollProgress />
         {children}
+        <Analytics />
       </body>
     </html>
   );

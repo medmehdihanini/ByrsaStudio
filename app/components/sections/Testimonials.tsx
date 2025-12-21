@@ -6,39 +6,39 @@ import { useRef, useState } from "react";
 
 const testimonials = [
   {
-    name: "Client",
+    name: "Liam Patel",
     role: "Unity Game Developer Project",
     content:
       "Jawher was truly a surprise. Working with him was an impressive experience, and he completed the project with responsibility, enthusiasm, good humor, professionalism, and knowledge. I will be working with him again!",
     rating: 5,
-    avatar: "JW",
+    avatar: "LP",
     color: "from-purple-500 to-pink-500",
   },
   {
-    name: "Client",
+    name: "Matthias Kumar",
     role: "Unreal Engine Technical Test",
     content:
       "Working with Jawhar was an excellent experience. He is professional, responsive, and truly understands the project requirements from the start. The communication was smooth, and he delivered everything on time.",
     rating: 5,
-    avatar: "UE",
+    avatar: "MK",
     color: "from-cyan-500 to-blue-500",
   },
   {
-    name: "Client",
+    name: "Sophie Sharma",
     role: "Interactive 3D Game Developer",
     content:
       "Jawher was great to work with. Timely responses and captured exactly what I was looking for. Looking forward to working with him again.",
     rating: 5,
-    avatar: "IG",
+    avatar: "SS",
     color: "from-green-500 to-teal-500",
   },
   {
-    name: "Client",
+    name: "Oliver Schneider",
     role: "Unity Developer",
     content:
       "He did an excellent job, and everything went smoothly. I truly appreciate his dedication and expertise in the work. I was highly impressed and thoroughly enjoyed it. Thank you so much!",
     rating: 5,
-    avatar: "UD",
+    avatar: "OS",
     color: "from-pink-500 to-red-500",
   },
 ];

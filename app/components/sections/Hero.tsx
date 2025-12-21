@@ -56,7 +56,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="text-base md:text-lg text-gray-400 mb-12 max-w-2xl mx-auto"
         >
-          We are a cutting-edge game development agency specializing in creating
+          We are a cutting-edge game development Studio specializing in creating
           unforgettable interactive experiences that push the boundaries of
           innovation and creativity.
         </motion.p>
@@ -89,33 +89,11 @@ export default function Hero() {
           </Link>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="text-gray-400"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </motion.div>
-        </motion.div>
+      
+        
+          
+          
+        
       </div>
     </section>
   );

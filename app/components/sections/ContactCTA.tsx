@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function ContactCTA() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" }); // Changed to once: true for better performance
-
+  const year = new Date().getFullYear();
   return (
     <section
       id="contact"
@@ -60,7 +60,7 @@ export default function ContactCTA() {
             </motion.button>
           </Link>
 
-          <a href="mailto:jawher@byrsastudio.com">
+          <a href="mailto:jawher.inbox@gmail.com">
             <motion.button
               whileHover={{
                 scale: 1.05,
@@ -92,7 +92,7 @@ export default function ContactCTA() {
               </svg>
             </div>
             <h3 className="text-lg font-bold text-white mb-2">Email</h3>
-            <p className="text-gray-400">jawher@byrsastudio.com</p>
+            <p className="text-gray-400">jawher.inbox@gmail.com</p>
           </motion.div>
 
           {/* Phone */}
@@ -163,7 +163,7 @@ export default function ContactCTA() {
           transition={{ duration: 1, delay: 1.5 }}
           className="text-gray-500 text-sm mt-16"
         >
-          © 2024 ByrsaStudio. All rights reserved.
+          © {year} ByrsaStudio. All rights reserved.
         </motion.p>
       </div>
     </section>
