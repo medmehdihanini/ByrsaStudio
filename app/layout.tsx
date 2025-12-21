@@ -34,6 +34,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+      </head>
       <body
         className={`${rajdhani.variable} ${poppins.variable} antialiased`}
       >
