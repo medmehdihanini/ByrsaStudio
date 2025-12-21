@@ -146,24 +146,6 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
                   ease: "easeInOut",
                 }}
               />
-
-              {/* Floating Number Badge */}
-              <motion.div
-                className="absolute top-6 left-6 w-16 h-16 rounded-2xl bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center"
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  type: "tween",
-                }}
-              >
-                <span className={`text-2xl font-bold bg-gradient-to-br ${service.color} bg-clip-text text-transparent`}>
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-              </motion.div>
             </div>
           </motion.div>
 
@@ -227,17 +209,8 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.7 + idx * 0.05 }}
                 >
-                  <motion.span
+                  <span
                     className={`mt-1.5 w-2 h-2 rounded-full bg-gradient-to-r ${service.color} flex-shrink-0`}
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.7, 1, 0.7],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: idx * 0.2,
-                    }}
                   />
                   <span className="text-sm text-gray-300 font-medium">{feature}</span>
                 </motion.div>
@@ -256,26 +229,23 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
                 backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
               }}
               transition={{
-                duration: 10,
+                duration: 15,
                 repeat: Infinity,
                 ease: "linear",
               }}
               style={{
                 backgroundSize: '200% 200%',
+                willChange: 'background-position',
               }}
             />
 
-            {/* Floating Particles */}
+            {/* Floating Particles - Optimized */}
             <div className="absolute inset-0 overflow-hidden">
               {[
-                { w: 80, h: 80, left: 10, top: 20, x: 30, y: 40, dur: 12 },
-                { w: 120, h: 120, left: 70, top: 60, x: -40, y: 30, dur: 14 },
-                { w: 90, h: 90, left: 30, top: 80, x: 20, y: -30, dur: 11 },
-                { w: 110, h: 110, left: 85, top: 15, x: -30, y: 40, dur: 13 },
-                { w: 70, h: 70, left: 50, top: 40, x: 40, y: -40, dur: 15 },
-                { w: 100, h: 100, left: 15, top: 70, x: -20, y: 30, dur: 10 },
-                { w: 85, h: 85, left: 65, top: 25, x: 30, y: -20, dur: 12 },
-                { w: 95, h: 95, left: 40, top: 55, x: -25, y: 35, dur: 14 },
+                { w: 100, h: 100, left: 15, top: 25, x: 25, y: 30, dur: 15 },
+                { w: 120, h: 120, left: 70, top: 60, x: -30, y: 25, dur: 18 },
+                { w: 90, h: 90, left: 35, top: 75, x: 20, y: -25, dur: 16 },
+                { w: 110, h: 110, left: 80, top: 20, x: -25, y: 30, dur: 17 },
               ].map((particle, i) => (
                 <motion.div
                   key={i}
@@ -285,34 +255,31 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
                     height: particle.h,
                     left: `${particle.left}%`,
                     top: `${particle.top}%`,
-                    filter: 'blur(40px)',
+                    filter: 'blur(30px)',
                     opacity: 0.1,
+                    willChange: 'transform',
                   }}
                   animate={{
                     x: [0, particle.x, 0],
                     y: [0, particle.y, 0],
-                    scale: [1, 1.2, 1],
-                    opacity: [0.1, 0.2, 0.1],
+                    scale: [1, 1.15, 1],
                   }}
                   transition={{
                     duration: particle.dur,
                     repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.5,
+                    ease: "linear",
+                    delay: i * 0.8,
                   }}
                 />
               ))}
             </div>
 
-            {/* Floating Geometric Shapes */}
+            {/* Floating Geometric Shapes - Optimized */}
             <div className="absolute inset-0 overflow-hidden">
               {[
-                { w: 50, h: 50, left: 20, top: 30, x: 20, y: -15, dur: 18, round: '50%' },
-                { w: 45, h: 45, left: 75, top: 70, x: -15, y: 20, dur: 16, round: '10px' },
-                { w: 60, h: 60, left: 45, top: 10, x: 10, y: 25, dur: 20, round: '50%' },
-                { w: 40, h: 40, left: 90, top: 45, x: -20, y: -10, dur: 17, round: '10px' },
-                { w: 55, h: 55, left: 10, top: 85, x: 25, y: -20, dur: 19, round: '50%' },
-                { w: 48, h: 48, left: 60, top: 55, x: -10, y: 15, dur: 21, round: '10px' },
+                { w: 55, h: 55, left: 25, top: 35, x: 15, y: -12, dur: 22, round: '50%' },
+                { w: 50, h: 50, left: 70, top: 65, x: -12, y: 15, dur: 24, round: '10px' },
+                { w: 60, h: 60, left: 45, top: 15, x: 10, y: 18, dur: 26, round: '50%' },
               ].map((shape, i) => (
                 <motion.div
                   key={`shape-${i}`}
@@ -323,18 +290,18 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
                     left: `${shape.left}%`,
                     top: `${shape.top}%`,
                     borderRadius: shape.round,
+                    willChange: 'transform',
                   }}
                   animate={{
                     x: [0, shape.x, 0],
                     y: [0, shape.y, 0],
-                    rotate: [0, 180, 360],
-                    opacity: [0.1, 0.3, 0.1],
+                    rotate: [0, 360],
                   }}
                   transition={{
                     duration: shape.dur,
                     repeat: Infinity,
                     ease: "linear",
-                    delay: i * 0.8,
+                    delay: i * 1.2,
                   }}
                 />
               ))}
@@ -342,29 +309,7 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
 
             {/* Content */}
             <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
-              {/* Number Badge */}
-              <motion.div
-                className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 mb-4"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
-                animate={{
-                  y: [0, -10, 0],
-                  transition: {
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    type: "tween",
-                  },
-                }}
-              >
-                <span className={`text-3xl font-bold bg-gradient-to-br ${service.color} bg-clip-text text-transparent`}>
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-              </motion.div>
-
-              {/* Title */}
+              {/* Title */
               <motion.h3
                 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}
                 initial={{ opacity: 0, y: 20 }}
@@ -374,7 +319,7 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
               >
                 {service.title}
               </motion.h3>
-
+}
               {/* Animated Divider */}
               <motion.div
                 className="flex justify-center mb-6"
@@ -424,17 +369,8 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.6 + idx * 0.05 }}
                   >
-                    <motion.span
+                    <span
                       className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color} flex-shrink-0`}
-                      animate={{
-                        scale: [1, 1.3, 1],
-                        opacity: [0.7, 1, 0.7],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: idx * 0.2,
-                      }}
                     />
                     <span className="text-sm text-gray-300 font-medium">{feature}</span>
                   </motion.div>
