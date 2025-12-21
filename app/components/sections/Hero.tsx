@@ -22,7 +22,7 @@ export default function Hero() {
           <div className="relative w-32 h-32 md:w-40 md:h-40">
             <Image
               src="/assets/mainlogo.png"
-              alt="ByrsaStudio Logo"
+              alt="Byrsa Studio Logo"
               fill
               className="object-contain drop-shadow-[0_0_30px_rgba(168,85,247,0.4)]"
               priority
