@@ -182,7 +182,6 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              {service.fullDescription}
             </motion.p>
 
             {/* Features Grid */}
@@ -340,7 +339,6 @@ function ServiceItem({ service, index }: { service: typeof services[0]; index: n
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                {service.fullDescription}
               </motion.p>
 
               {/* Features Grid */}
