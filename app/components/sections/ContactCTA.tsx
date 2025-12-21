@@ -47,18 +47,33 @@ export default function ContactCTA() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
         >
-          <Link href="/contact">
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 0 40px rgba(168,85,247,0.6)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-purple-500/50 transition-all"
-            >
+          <motion.button
+            onClick={() => {
+              if (typeof window !== 'undefined' && (window as any).Calendly) {
+                (window as any).Calendly.initPopupWidget({ url: 'https://calendly.com/jawher-inbox/client' });
+              }
+            }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 0 40px rgba(168,85,247,0.6)",
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="relative px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-purple-500/50 transition-all overflow-hidden group"
+          >
+            {/* Shine effect */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+              initial={{ x: '-100%' }}
+              whileHover={{ x: '100%' }}
+              transition={{ duration: 0.6 }}
+            />
+            <span className="relative z-10 flex items-center gap-2 justify-center">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
               Start a Project
-            </motion.button>
-          </Link>
+            </span>
+          </motion.button>
 
           <a href="mailto:jawher.inbox@gmail.com">
             <motion.button
