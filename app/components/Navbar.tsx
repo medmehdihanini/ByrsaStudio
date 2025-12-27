@@ -46,12 +46,21 @@ const Navbar = () => {
     // Only handle smooth scroll if we're on the home page
     if (pathname === "/") {
       e.preventDefault()
-      const element = document.querySelector(sectionId)
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
-      }
+      
+      // Close mobile menu first for better UX
+      setIsOpen(false)
+      
+      // Small delay to let menu close, then scroll
+      setTimeout(() => {
+        const element = document.querySelector(sectionId)
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" })
+        }
+      }, 300)
+    } else {
+      // If not on home page, close menu and allow navigation
+      setIsOpen(false)
     }
-    setIsOpen(false)
   }
 
   const isActive = (section: string) => {
