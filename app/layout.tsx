@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Rajdhani, Poppins } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import CursorGlow from "./components/CursorGlow";
@@ -11,6 +12,7 @@ const rajdhani = Rajdhani({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
+  preload: true,
 });
 
 const poppins = Poppins({
@@ -18,6 +20,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -129,12 +132,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+        {/* Preload Calendly CSS for better performance */}
+        <link
+          rel="preload"
+          href="https://assets.calendly.com/assets/external/widget.css"
+          as="style"
+        />
+        <link
+          rel="stylesheet"
+          href="https://assets.calendly.com/assets/external/widget.css"
+        />
       </head>
       <body
         className={`${rajdhani.variable} ${poppins.variable} antialiased`}
       >
+        {/* Calendly Script - Load after page is interactive (non-blocking) */}
+        <Script
+          src="https://assets.calendly.com/assets/external/widget.js"
+          strategy="lazyOnload"
+        />
+        
         <CursorGlow />
         <Navbar />
         <ScrollProgress />

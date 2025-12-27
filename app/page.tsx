@@ -11,10 +11,10 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Home - Professional Game Development Studio",
-  description: "Byrsa Studio is a cutting-edge game development agency specializing in Unity, Unreal Engine, VR, AR, MR development, 3D modeling, and cross-platform gaming experiences. We transform creative visions into unforgettable interactive entertainment.",
+  description: "Professional game development studio specializing in Unity, Unreal Engine, VR/AR/MR experiences, 3D modeling, and cross-platform games. Creating immersive gaming experiences worldwide.",
   openGraph: {
     title: "Byrsa Studio - Professional Game Development Studio",
-    description: "Creating immersive gaming experiences with Unity, Unreal Engine, VR, AR, and MR technology.",
+    description: "Professional game development studio specializing in Unity, Unreal Engine, VR/AR/MR experiences, 3D modeling, and cross-platform games.",
     url: "https://byrsastudio.com",
     type: "website",
   },
